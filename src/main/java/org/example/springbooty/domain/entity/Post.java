@@ -5,13 +5,13 @@ import jakarta.persistence.*;
 import java.time.LocalDate;
 
 @Entity
-public class Posts {
+public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     Long id;
-    @Column(name = "text", nullable = false)
-    String text;
+    @Column(name = "posttext", nullable = false)
+    String postText;
     @Column(name = "date", nullable = false)
     LocalDate date;
     @ManyToOne(fetch = FetchType.LAZY)
@@ -26,12 +26,12 @@ public class Posts {
         this.id = id;
     }
 
-    public String getText() {
-        return text;
+    public String getPostText() {
+        return postText;
     }
 
-    public void setText(String text) {
-        this.text = text;
+    public void setPostText(String text) {
+        this.postText = text;
     }
 
     public LocalDate getDate() {

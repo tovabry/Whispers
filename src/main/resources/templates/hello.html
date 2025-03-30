@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello</title>
+</head>
+<body>
+<h1 th:text="${message}">Default header</h1>
+<p th:text="'Hello there ' + ${name}">Default text to show if none is provided.</p>
+<h2 id="header2">Smaller heading...</h2>
+<p th:text="#{greeting}">Placeholder greeting</p>
+<a th:href="@{/hello(lang=${'en'})}">English</a>
+<a th:href="@{/hello(lang=${'sv'})}">Svenska</a>
+<a th:href="@{/hello(lang=${'es'})}">Espanol</a>
+</body>
+</html>

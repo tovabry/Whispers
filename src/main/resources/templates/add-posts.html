@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add posts</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            cursor: pointer;
+        }
+        .success-message {
+            color: green;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+<h1>Add New Playground</h1>
+
+<div th:if="${success}" class="success-message">
+    Playground added successfully!
+</div>
+
+<form th:action="@{/posts/add}" method="post" th:object="${post}">
+    <div class="form-group">
+        <label for="postText">Post text:</label>
+        <input type="text" id="postText" th:field="*{postText}" required>
+    </div>
+
+    <button type="submit">Add post</button>
+</form>
+
+<div style="margin-top: 20px;">
+    <a th:href="@{/posts/view}">View all posts</a>
+</div>
+</body>
+</html>
