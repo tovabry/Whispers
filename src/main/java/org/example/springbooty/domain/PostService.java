@@ -23,7 +23,7 @@ public class PostService {
 
    @Cacheable("allPosts")
     public List<Post> getAllPosts() {
-       List<Post> posts = postRepository.findAll();
+       List<Post> posts = postRepository.findAllByOrderByDateDesc();
        log.info("Fetched posts: " + posts);
        return posts;
    }

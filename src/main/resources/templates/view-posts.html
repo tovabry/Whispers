@@ -2,64 +2,159 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>View posts</title>
+    <title>Wispers</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
+            font-family: "Roboto Light", sans-serif;
+            background-color: #a3a3bd;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            height: 100vh;
         }
-        table {
+
+        .container {
             width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-        th, td {
+            max-width: 800px;
+            padding: 30px;
+            background-color: white;
+            border-radius: 12px;
             border: 1px solid #ddd;
-            padding: 8px;
-            text-align: left;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
-        th {
-            background-color: #f2f2f2;
+
+        h1 {
+            text-align: center;
+            color: #4a4a4a;
+            font-size: 50px;
+            margin-bottom: 50px;
+
         }
-        tr:nth-child(even) {
-            background-color: #f9f9f9;
+
+        .post {
+            border: 1px solid #ddd; /* Added border */
+            border-radius: 8px; /* Rounded corners for the post */
+            padding: 20px; /* Added padding inside the post */
+            margin-bottom: 20px; /* Spacing between posts */
+            background-color: #fff; /* Background for each post */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Slight shadow for better separation */
         }
+
+        .post:last-child {
+            border-bottom: none;
+        }
+
+        .post .user {
+            font-weight: bold;
+            color: #2c2c2c;
+            font-size: 16px;
+        }
+
+        .post .date {
+            font-size: 12px;
+            color: #999;
+            margin-top: 5px;
+        }
+
+        .post .content {
+            margin-top: 10px;
+            font-size: 16px;
+            line-height: 1.6;
+            color: #333;
+        }
+
         .actions {
             margin-top: 20px;
+            text-align: center;
         }
+
+        .actions a {
+            color: #63637d;
+            font-size: 16px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .actions a:hover {
+            text-decoration: underline;
+        }
+
+        .no-posts {
+            text-align: center;
+            font-size: 18px;
+            color: #ff6347;
+        }
+
+        /* New Form Styles */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="text"]:focus {
+            border-color: #63637d;
+            outline: none;
+        }
+
+        button {
+            font-family: 'Roboto Light', sans-serif;
+            background-color: #63637d;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            margin-bottom: 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+
+        }
+
+        button:hover {
+            background-color: #63637d;
+        }
+
     </style>
 </head>
 <body>
-<h1>All posts</h1>
 
-<table>
-    <thead>
-    <tr>
-        <th>ID</th>
-        <th>Post text</th>
-        <th>Date</th>
-        <th>User</th>
+<div class="container">
+    <h1>Wispers</h1>
 
+    <!-- Add New Wisper Form -->
+    <form th:action="@{/posts/add}" method="post" th:object="${post}">
+        <div class="form-group">
+            <input type="text" id="postText" th:field="*{postText}" required placeholder="Write a new Wisper...">
+        </div>
+        <button type="submit">Post Wisper</button>
+    </form>
 
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="post : ${posts}">
-        <td th:text="${post.id}"></td>
-        <td th:text="${post.postText}"></td>
-        <td th:text="${#dates.format(post.date, 'yyyy-MM-dd HH:mm:ss')}"></td>
-        <td th:text="${post.user != null ? post.user.name : 'No User'}"></td>
-    </tr>
-    <tr th:if="${#lists.isEmpty(posts)}">
-        <td colspan="2">No posts found.</td>
-    </tr>
-    </tbody>
-</table>
+    <!-- Display Posts -->
+    <div th:each="post : ${posts}">
+        <div class="post">
+            <div class="user" th:text="${post.user != null ? post.user.name : 'Anonymous'}"></div>
+            <div class="date" th:text="${#temporals.format(post.date, 'yyyy-MM-dd HH:mm:ss')}"></div>
+            <div class="content" th:text="${post.postText}"></div>
+        </div>
+    </div>
 
-<div class="actions">
-    <a th:href="@{/posts/add}">Add new post</a>
+    <div th:if="${#lists.isEmpty(posts)}" class="no-posts">
+        It's silent for now.
+    </div>
+
 </div>
+
 </body>
 </html>

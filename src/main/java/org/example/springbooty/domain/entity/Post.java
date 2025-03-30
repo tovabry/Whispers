@@ -3,6 +3,7 @@ package org.example.springbooty.domain.entity;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 public class Post {
@@ -13,13 +14,13 @@ public class Post {
     @Column(name = "posttext", nullable = false)
     String postText;
     @Column(name = "date", nullable = false)
-    LocalDate date;
-    @ManyToOne(fetch = FetchType.LAZY)
+    LocalDateTime date;
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     AppUser user;
 
     public Post() {
-        this.date = LocalDate.now();
+        this.date = LocalDateTime.now();
     }
 
     public Long getId() {
@@ -38,11 +39,11 @@ public class Post {
         this.postText = text;
     }
 
-    public LocalDate getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 
-    public void setDate(LocalDate date) {
+    public void setDateTime(LocalDateTime date) {
         this.date = date;
     }
 

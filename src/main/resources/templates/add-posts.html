@@ -2,57 +2,120 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Add posts</title>
+    <title>Add Wisper</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: "Roboto Light", sans-serif;
+            background-color: #a3a3bd;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            width: 100%;
             max-width: 600px;
-            margin: 0 auto;
-            padding: 20px;
+            padding: 30px;
+            background-color: white;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
+
+        h1 {
+            text-align: center;
+            color: #4a4a4a;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
         .form-group {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
+
         label {
             display: block;
-            margin-bottom: 5px;
+            font-size: 16px;
+            margin-bottom: 8px;
         }
+
         input[type="text"] {
             width: 100%;
-            padding: 8px;
+            padding: 12px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
             box-sizing: border-box;
+            transition: border-color 0.3s ease;
         }
+
+        input[type="text"]:focus {
+            border-color: #63637d;
+            outline: none;
+        }
+
         button {
-            background-color: #4CAF50;
+            font-family: 'Roboto Light', sans-serif;
+            background-color: #63637d;
             color: white;
-            padding: 10px 15px;
+            padding: 12px 20px;
             border: none;
+            border-radius: 4px;
             cursor: pointer;
+            width: 100%;
+            font-size: 16px;
         }
+
+        button:hover {
+            background-color: #63637d;
+        }
+
         .success-message {
+            font-family: 'Roboto Light', sans-serif;
             color: green;
             margin-top: 15px;
+            text-align: center;
+        }
+
+        .actions {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .actions a {
+            color: #000000;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .actions a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
-<h1>Add New Playground</h1>
+<div class="container">
+    <h1>Make a Wisper</h1>
 
-<div th:if="${success}" class="success-message">
-    Playground added successfully!
-</div>
-
-<form th:action="@{/posts/add}" method="post" th:object="${post}">
-    <div class="form-group">
-        <label for="postText">Post text:</label>
-        <input type="text" id="postText" th:field="*{postText}" required>
+    <div th:if="${success}" class="success-message">
+        Wisper added successfully!
     </div>
 
-    <button type="submit">Add post</button>
-</form>
+    <form th:action="@{/posts/add}" method="post" th:object="${post}">
+        <div class="form-group">
+            <input type="text" id="postText" th:field="*{postText}" required>
+        </div>
 
-<div style="margin-top: 20px;">
-    <a th:href="@{/posts/view}">View all posts</a>
+        <button type="submit">Post Wisper</button>
+    </form>
+
+    <div class="actions">
+        <a th:href="@{/posts/view}">View all Wispers</a>
+    </div>
 </div>
 </body>
 </html>

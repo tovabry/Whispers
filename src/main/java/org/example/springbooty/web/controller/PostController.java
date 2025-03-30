@@ -21,6 +21,7 @@ public class PostController {
     @GetMapping("/view")
     public String viewPosts(Model model) {
         model.addAttribute("posts", postService.getAllPosts());
+        model.addAttribute("post", new Post()); // Add empty Post object for the form
         return "view-posts";
     }
 
@@ -42,6 +43,6 @@ public class PostController {
         redirectAttributes.addFlashAttribute("success", true);
         redirectAttributes.addFlashAttribute("post", new Post());
 
-        return "redirect:/posts/add";
+        return "redirect:/posts/view";
     }
 }

@@ -1,0 +1,2 @@
+ALTER TABLE post
+    ALTER COLUMN date SET NOT NULL;
