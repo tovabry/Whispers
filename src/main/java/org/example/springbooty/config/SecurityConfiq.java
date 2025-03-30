@@ -14,7 +14,7 @@ class SecurityConfig {
         http
                 .formLogin(Customizer.withDefaults())
                 .authorizeHttpRequests((authorize) -> authorize
-                        .requestMatchers("/test").permitAll()
+                        .requestMatchers("/posts/add").permitAll()
                         .anyRequest().permitAll()
                 );
         return http.build();

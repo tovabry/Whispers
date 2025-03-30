@@ -15,8 +15,12 @@ public class Post {
     @Column(name = "date", nullable = false)
     LocalDate date;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "user_id")
     AppUser user;
+
+    public Post() {
+        this.date = LocalDate.now();
+    }
 
     public Long getId() {
         return id;

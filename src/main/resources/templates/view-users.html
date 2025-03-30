@@ -37,14 +37,15 @@
 <table>
     <thead>
     <tr>
-        <th>ID</th>
         <th>Name</th>
     </tr>
     </thead>
     <tbody>
     <tr th:each="appuser : ${users}">
-        <td th:text="${appuser.id}"></td>
         <td th:text="${appuser.name}"></td>
+    </tr>
+    <tr th:if="${#lists.isEmpty(users)}">
+        <td colspan="2">No users found.</td>
     </tr>
     </tbody>
 </table>

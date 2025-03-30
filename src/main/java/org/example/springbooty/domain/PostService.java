@@ -23,8 +23,9 @@ public class PostService {
 
    @Cacheable("allPosts")
     public List<Post> getAllPosts() {
-       log.info("getAllPosts");
-       return postRepository.findAll();
+       List<Post> posts = postRepository.findAll();
+       log.info("Fetched posts: " + posts);
+       return posts;
    }
 
     @CacheEvict(value = "allPosts", allEntries = true)

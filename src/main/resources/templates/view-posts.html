@@ -38,13 +38,22 @@
     <thead>
     <tr>
         <th>ID</th>
-        <th>Name</th>
+        <th>Post text</th>
+        <th>Date</th>
+        <th>User</th>
+
+
     </tr>
     </thead>
     <tbody>
     <tr th:each="post : ${posts}">
         <td th:text="${post.id}"></td>
-        <td th:text="${post.name}"></td>
+        <td th:text="${post.postText}"></td>
+        <td th:text="${#dates.format(post.date, 'yyyy-MM-dd HH:mm:ss')}"></td>
+        <td th:text="${post.user != null ? post.user.name : 'No User'}"></td>
+    </tr>
+    <tr th:if="${#lists.isEmpty(posts)}">
+        <td colspan="2">No posts found.</td>
     </tr>
     </tbody>
 </table>

@@ -22,9 +22,10 @@ public class AppUserService {
     }
 
     @Cacheable("allUsers")
-    public List<AppUser> getAllUsers(){
-       log.info("Fetching all users");
-       return appUserRepository.findAll();
+    public List<AppUser> getAllUsers() {
+        List<AppUser> users = appUserRepository.findAll();
+        log.info("Fetched users: " + users);
+        return users;
     }
 
     @CacheEvict(value = "allUsers", allEntries = true)

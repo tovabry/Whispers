@@ -13,7 +13,7 @@ public class AppUser {
     @Column(name ="name", nullable = false)
     String name;
 
-     Long getId() {
+    public Long getId() {
         return id;
     }
 
