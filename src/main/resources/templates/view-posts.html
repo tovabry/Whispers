@@ -35,12 +35,12 @@
         }
 
         .post {
-            border: 1px solid #ddd; /* Added border */
-            border-radius: 8px; /* Rounded corners for the post */
-            padding: 20px; /* Added padding inside the post */
-            margin-bottom: 20px; /* Spacing between posts */
-            background-color: #fff; /* Background for each post */
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Slight shadow for better separation */
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
 
         .post:last-child {
@@ -85,7 +85,7 @@
         .no-posts {
             text-align: center;
             font-size: 18px;
-            color: #ff6347;
+            color: #000000;
         }
 
         /* New Form Styles */
@@ -119,11 +119,10 @@
             cursor: pointer;
             width: 100%;
             font-size: 16px;
-
         }
 
         button:hover {
-            background-color: #63637d;
+            background-color: #52526e;
         }
 
     </style>
@@ -136,7 +135,8 @@
     <!-- Add New Wisper Form -->
     <form th:action="@{/posts/add}" method="post" th:object="${post}">
         <div class="form-group">
-            <input type="text" id="postText" th:field="*{postText}" required placeholder="Write a new Wisper...">
+            <input type="text" id="postText" th:field="*{postText}" required placeholder="Write a new Wisper..." oninvalid="this.setCustomValidity('They can&rsquo;t hear your silent wisper')"
+                   oninput="this.setCustomValidity('')">
         </div>
         <button type="submit">Post Wisper</button>
     </form>

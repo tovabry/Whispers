@@ -21,7 +21,7 @@ public class PostController {
     @GetMapping("/view")
     public String viewPosts(Model model) {
         model.addAttribute("posts", postService.getAllPosts());
-        model.addAttribute("post", new Post()); // Add empty Post object for the form
+        model.addAttribute("post", new Post());
         return "view-posts";
     }
 
