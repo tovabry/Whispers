@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="${#locale.language}">
 <head>
     <meta charset="UTF-8">
     <title>Whispers</title>
@@ -31,7 +31,6 @@
             color: #4a4a4a;
             font-size: 50px;
             margin-bottom: 50px;
-
         }
 
         .post {
@@ -85,10 +84,9 @@
         .no-posts {
             text-align: center;
             font-size: 18px;
-            color: #363640;
+            color: #000000;
         }
 
-        /* New Form Styles */
         .form-group {
             margin-bottom: 20px;
         }
@@ -122,9 +120,8 @@
         }
 
         button:hover {
-            background-color: #52526e;
+            background-color: #63637d;
         }
-
     </style>
 </head>
 <body>
@@ -135,10 +132,12 @@
     <!-- Add New Wisper Form -->
     <form th:action="@{/posts/add}" method="post" th:object="${post}">
         <div class="form-group">
-            <input type="text" id="postText" th:field="*{postText}" required placeholder="Write a new Whisper..." oninvalid="this.setCustomValidity('They can&rsquo;t hear your silent whisper')"
+            <input type="text" id="postText" th:field="*{postText}" required
+                   th:placeholder="#{whisper.placeholder}"
+                   oninvalid="this.setCustomValidity('They can&rsquo;t hear your silent whisper')"
                    oninput="this.setCustomValidity('')">
         </div>
-        <button type="submit">Post Whisper</button>
+        <button type="submit" th:text="#{whisper.postButton}">Post Whisper</button>
     </form>
 
     <!-- Display Posts -->
@@ -150,7 +149,7 @@
         </div>
     </div>
 
-    <div th:if="${#lists.isEmpty(posts)}" class="no-posts">
+    <div th:if="${#lists.isEmpty(posts)}" class="no-posts" th:text="#{whisper.noPosts}">
         It's silent for now.
     </div>
 
