@@ -1,6 +1,0 @@
-ALTER TABLE post
-    ADD posttext VARCHAR(255);
-
-ALTER TABLE post
-    ALTER COLUMN posttext SET NOT NULL;
-
