@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Add Wisper</title>
+    <title>Add Whisper</title>
     <style>
         body {
             font-family: "Roboto Light", sans-serif;
@@ -99,10 +99,10 @@
 </head>
 <body>
 <div class="container">
-    <h1>Make a Wisper</h1>
+    <h1>Make a Whisper</h1>
 
     <div th:if="${success}" class="success-message">
-        Wisper added successfully!
+        Whisper added successfully!
     </div>
 
     <form th:action="@{/posts/add}" method="post" th:object="${post}">
@@ -110,11 +110,11 @@
             <input type="text" id="postText" th:field="*{postText}" required>
         </div>
 
-        <button type="submit">Post Wisper</button>
+        <button type="submit">Post Whisper</button>
     </form>
 
     <div class="actions">
-        <a th:href="@{/posts/view}">View all Wispers</a>
+        <a th:href="@{/posts/view}">View all Whispers</a>
     </div>
 </div>
 </body>

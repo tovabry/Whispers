@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Wispers</title>
+    <title>Whispers</title>
     <style>
         body {
             font-family: "Roboto Light", sans-serif;
@@ -85,7 +85,7 @@
         .no-posts {
             text-align: center;
             font-size: 18px;
-            color: #000000;
+            color: #363640;
         }
 
         /* New Form Styles */
@@ -130,15 +130,15 @@
 <body>
 
 <div class="container">
-    <h1>Wispers</h1>
+    <h1>Whispers</h1>
 
     <!-- Add New Wisper Form -->
     <form th:action="@{/posts/add}" method="post" th:object="${post}">
         <div class="form-group">
-            <input type="text" id="postText" th:field="*{postText}" required placeholder="Write a new Wisper..." oninvalid="this.setCustomValidity('They can&rsquo;t hear your silent wisper')"
+            <input type="text" id="postText" th:field="*{postText}" required placeholder="Write a new Whisper..." oninvalid="this.setCustomValidity('They can&rsquo;t hear your silent whisper')"
                    oninput="this.setCustomValidity('')">
         </div>
-        <button type="submit">Post Wisper</button>
+        <button type="submit">Post Whisper</button>
     </form>
 
     <!-- Display Posts -->
